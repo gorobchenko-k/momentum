@@ -12,6 +12,7 @@ function showTime() {
     const currentTime = date.toLocaleTimeString();
     timeElement.textContent = currentTime;
     showDate(date);
+    showGreeting(date);
     setTimeout(showTime, 1000);
 }
 
