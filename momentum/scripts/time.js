@@ -3,7 +3,7 @@ const dateElement = document.querySelector(".date");
 
 function showDate(date) {
 
-    const currentDate = date.toLocaleDateString('ru-RU', { weekday: 'long', month: 'long', day: 'numeric' }); //'ru-RU' en-US
+    const currentDate = date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }); //'ru-RU' en-US
     dateElement.textContent = currentDate;
 }
 

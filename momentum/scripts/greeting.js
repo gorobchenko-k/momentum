@@ -15,10 +15,10 @@ function getTimeOfDay(hours) {
 
 function getGreetingText(hours) {
     const greetingTextOfTime = {
-        'night': 'Спокойной ночи',
-        'morning': 'Доброе утро',
-        'afternoon': 'Добрый день',
-        'evening': 'Добрый вечер',
+        'night': 'Good night',
+        'morning': 'Good morning',
+        'afternoon': 'Good afternoon',
+        'evening': 'Good evening',
     }
 
     return greetingTextOfTime[getTimeOfDay(hours)];

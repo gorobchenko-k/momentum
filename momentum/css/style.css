@@ -167,6 +167,10 @@ body {
   opacity: .6;
 }
 
+.weather-error {
+  font-weight: 700;
+}
+
 .main {
   position: relative;
   display: flex;
@@ -265,6 +269,10 @@ body {
 
 .author {
   min-height: 20px;
+}
+
+._hidden {
+  display: none;
 }
 
 @media (max-width: 768px) {
