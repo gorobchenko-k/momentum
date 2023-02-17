@@ -4,20 +4,29 @@ const nameInput = document.querySelector(".name");
 
 function getTimeOfDay(hours) {
     const timeOfDay = {
-        0: 'Спокойной ночи',
-        1: 'Доброе утро',
-        2: 'Добрый день',
-        3: 'Добрый вечер',
+        0: 'night',
+        1: 'morning',
+        2: 'afternoon',
+        3: 'evening',
     }
 
     return timeOfDay[Math.floor(hours / 6)];
+}
 
+function getGreetingText(hours) {
+    const greetingTextOfTime = {
+        'night': 'Спокойной ночи',
+        'morning': 'Доброе утро',
+        'afternoon': 'Добрый день',
+        'evening': 'Добрый вечер',
+    }
+
+    return greetingTextOfTime[getTimeOfDay(hours)];
 }
 
 function showGreeting(date) {
     const hours = date.getHours();
-    const timeOfDay = getTimeOfDay(hours);
-    const greetingText = `${timeOfDay}, `;
+    const greetingText = `${getGreetingText(hours)}, `;
 
     greetingElement.textContent = greetingText;
 }
