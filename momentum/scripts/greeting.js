@@ -15,13 +15,20 @@ function getTimeOfDay(hours) {
 
 function getGreetingText(hours) {
     const greetingTextOfTime = {
-        'night': 'Good night',
-        'morning': 'Good morning',
-        'afternoon': 'Good afternoon',
-        'evening': 'Good evening',
-    }
-
-    return greetingTextOfTime[getTimeOfDay(hours)];
+        'en': {
+            'night': 'Good night',
+            'morning': 'Good morning',
+            'afternoon': 'Good afternoon',
+            'evening': 'Good evening',
+        },
+        'ru': {
+            'night': 'Спокойной ночи',
+            'morning': 'Доброе утро',
+            'afternoon': 'Добрый день',
+            'evening': 'Добрый вечер',
+        }
+    };
+    return greetingTextOfTime[currentLang][getTimeOfDay(hours)];
 }
 
 function showGreeting(date) {
@@ -43,3 +50,4 @@ function getLocalStorege() {
 
 window.addEventListener("beforeunload", setLocalStorege);
 window.addEventListener("load", getLocalStorege);
+nameInput.placeholder = currentLang === 'en' ? "[Enter name]" : "[Введите имя]";

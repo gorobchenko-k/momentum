@@ -256,6 +256,7 @@ body {
   height: 30vh;
   min-height: 160px;
   padding: 20px;
+  position: relative;
 }
 
 .change-quote {
@@ -269,6 +270,22 @@ body {
 
 .author {
   min-height: 20px;
+}
+
+.switchLang {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+}
+
+.lang {
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.lang._active {
+  font-weight: 800;
 }
 
 ._hidden {

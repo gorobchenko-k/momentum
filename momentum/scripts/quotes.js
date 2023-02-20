@@ -11,10 +11,10 @@ async function getQuotes() {
     const quotes = '../assets/json/quotes.json';
     const res = await fetch(quotes);
     const data = await res.json();
-    const max = data.length;
+    const max = data[currentLang].length;
     const numberQuotes = getRandomNum(max);
-    quoteElement.textContent = data[numberQuotes].text;
-    authorElement.textContent = data[numberQuotes].author;
+    quoteElement.textContent = data[currentLang][numberQuotes].text;
+    authorElement.textContent = data[currentLang][numberQuotes].author;
 }
 
 changeQuoteElement.addEventListener("click", getQuotes);

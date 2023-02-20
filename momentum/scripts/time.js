@@ -2,8 +2,8 @@ const timeElement = document.querySelector(".time");
 const dateElement = document.querySelector(".date");
 
 function showDate(date) {
-
-    const currentDate = date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }); //'ru-RU' en-US
+    const lang = currentLang === 'en' ? 'en-US' : 'ru-RU';
+    const currentDate = date.toLocaleDateString(lang, { weekday: 'long', month: 'long', day: 'numeric' }); //'ru-RU' en-US
     dateElement.textContent = currentDate;
 }
 
