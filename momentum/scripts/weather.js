@@ -20,7 +20,7 @@ async function getWeather() {
         }
     };
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&lang=${currentLang}&appid=ab9633fb9c5dcb2c96d4fc75c5491240&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&lang=${settings.language}&appid=ab9633fb9c5dcb2c96d4fc75c5491240&units=metric`;
     const res = await fetch(url);
     const data = await res.json();
 
@@ -32,10 +32,10 @@ async function getWeather() {
         weatherIcon.classList.add(`owf-${data.weather[0].id}`);
         temperature.textContent = `${Math.round(data.main.temp)}°C`;
         weatherDescription.textContent = data.weather[0].description;
-        wind.textContent = `${weatherText[currentLang].windSpeed}: ${Math.round(data.wind.speed)}m/s`;
-        humidity.textContent = `${weatherText[currentLang].humidity}: ${Math.round(data.main.humidity)}%`;
+        wind.textContent = `${weatherText[settings.language].windSpeed}: ${Math.round(data.wind.speed)}m/s`;
+        humidity.textContent = `${weatherText[settings.language].humidity}: ${Math.round(data.main.humidity)}%`;
     } else {
-        weatherError.textContent = weatherText[currentLang].error;
+        weatherError.textContent = weatherText[settings.language].error;
         hideWeather();
     }
 

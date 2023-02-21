@@ -2,9 +2,12 @@ const max = 20;
 const min = 1;
 const slideNext = document.querySelector(".slide-next");
 const slidePrev = document.querySelector(".slide-prev");
-let photoSource = "unsplash"; //unsplash gitHub flickr 
+const photoSourseRadioButtons = document.querySelectorAll(".photoSourse__radio");
+const tagInput = document.querySelector("#tag");
 
+let checkedRadioButton = document.querySelector(`#${settings.photoSource}`);
 let randomNum;
+
 function getRandomNum(min, max) {
     randomNum = Math.floor(Math.random() * (max - min) + min);
 }
@@ -13,8 +16,8 @@ function setBackgroundImage() {
     const date = new Date();
     const hours = date.getHours();
     const timeOfDay = getTimeOfDay(hours);
-    switch (photoSource) {
-        case "gitHub":
+    switch (settings.photoSource) {
+        case "github":
             getLinkToImageGitHub(timeOfDay);
             break;
         case "unsplash":
@@ -29,6 +32,7 @@ function setBackgroundImage() {
 }
 
 function getLinkToImageGitHub(timeOfDay) {
+    getRandomNum(min, max);
     let numberBackgroundImage = randomNum;
     numberBackgroundImage = numberBackgroundImage > 9 ? numberBackgroundImage : "0" + numberBackgroundImage;
     const urlBackgroundImage = `https://raw.githubusercontent.com/gorobchenko-k/momentum-images/main/${timeOfDay}/${numberBackgroundImage}.webp`;
@@ -37,10 +41,12 @@ function getLinkToImageGitHub(timeOfDay) {
     img.addEventListener('load', () => {
         document.body.style.backgroundImage = `url('${urlBackgroundImage}')`;
     });
+    tagInput.value = timeOfDay;
 }
 
 async function getLinkToImageUnsplash(timeOfDay) {
-    const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${timeOfDay}&client_id=0UO_pALeJCFuKBIj8IpJEuypsLFSVG-YaIoKYSJQHIg`;
+    const tag = settings.photoTag ? settings.photoTag : timeOfDay;
+    const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${tag}&client_id=0UO_pALeJCFuKBIj8IpJEuypsLFSVG-YaIoKYSJQHIg`;
     const res = await fetch(url);
     const data = await res.json();
     const urlBackgroundImage = data.urls.regular;
@@ -49,9 +55,11 @@ async function getLinkToImageUnsplash(timeOfDay) {
     img.addEventListener('load', () => {
         document.body.style.backgroundImage = `url('${urlBackgroundImage}')`;
     });
+    tagInput.value = tag;
 }
 
 async function getLinkToImageFlickr(timeOfDay) {
+    const tag = settings.photoTag ? settings.photoTag : timeOfDay;
     const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=e57f2613daf7544590197cc2c8ac5f8d&tags=${timeOfDay}&extras=url_l&format=json&nojsoncallback=1`;
     const res = await fetch(url);
     const data = await res.json();
@@ -61,8 +69,7 @@ async function getLinkToImageFlickr(timeOfDay) {
     img.addEventListener('load', () => {
         document.body.style.backgroundImage = `url('${urlBackgroundImage}')`;
     });
-
-    return urlBackgroundImage;
+    tagInput.value = tag;
 }
 
 function getSlideNext() {
@@ -83,8 +90,34 @@ function getSlidePrev() {
     setBackgroundImage();
 }
 
+function disabledInput(elem) {
+    if (elem.value === 'github') {
+        tagInput.disabled = true;
+    } else {
+        tagInput.disabled = false;
+    }
+}
+
+function setPhotoTag(event) {
+    if (event.code === 'Enter') {
+        settings.photoTag = tagInput.value !== '' ? tagInput.value : null;
+        setBackgroundImage();
+        tagInput.blur();
+    }
+}
+
 slideNext.addEventListener('click', getSlideNext);
 slidePrev.addEventListener('click', getSlidePrev);
 
-getRandomNum(min, max);
+checkedRadioButton.checked = true;
+disabledInput(checkedRadioButton);
+
+photoSourseRadioButtons.forEach(item => item.addEventListener('change', function (e) {
+    settings.photoSource = e.target.value;
+    setBackgroundImage();
+    disabledInput(e.target);
+}));
+
+tagInput.addEventListener("keypress", setPhotoTag);
+
 setBackgroundImage();

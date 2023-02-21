@@ -1,7 +1,6 @@
 @font-face {
   font-family: 'Arial-MT';
   src: url("../assets/fonts/Arial-MT.woff");
-  /* Путь к файлу со шрифтом */
 }
 
 * {
@@ -22,6 +21,15 @@ body {
   background-size: cover;
   background-blend-mode: multiply;
   transition: background-image 1s ease-in-out;
+}
+
+.time,
+.date,
+.greeting,
+.quote,
+.weather,
+.player {
+  transition: all .6s ease 0s;
 }
 
 .header {
@@ -74,7 +82,8 @@ body {
 
 .player-icon,
 .slider-icon,
-.change-quote {
+.change-quote,
+.settings-icon {
   width: 32px;
   height: 32px;
   background-size: 32px 32px;
@@ -130,10 +139,6 @@ body {
   width: 180px;
   min-height: 180px;
   text-align: left;
-}
-
-.weather-error {
-  margin-top: -10px;
 }
 
 .description-container {
@@ -214,7 +219,7 @@ body {
   margin-bottom: 20px;
 }
 
-.greeting-container {
+.greeting {
   display: flex;
   flex-wrap: wrap;
   justify-content: stretch;
@@ -224,7 +229,7 @@ body {
   font-size: 40px;
 }
 
-.greeting {
+.greeting-text {
   flex: 1;
   padding: 10px;
   text-align: right;
@@ -264,7 +269,7 @@ body {
   background-image: url("../assets/svg/reload.svg");
 }
 
-.quote {
+.quote-text {
   min-height: 32px;
 }
 
@@ -272,11 +277,47 @@ body {
   min-height: 20px;
 }
 
-.switchLang {
+.settings {
   position: absolute;
   bottom: 0;
   right: 0;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 14px;
+}
+
+.settings-icon {
+  background-image: url("../assets/svg/settings.svg");
+}
+
+.settings__bar {
+  display: none;
+  width: 350px;
+  height: 170px;
+  border-radius: 5px;
+  background-color: #fff;
+  opacity: .8;
+  color: #2b2b2b;
+  padding: 10px;
+  margin: 5px;
+}
+
+.settings__bar>* {
+  padding: 5px;
+}
+
+.settings__bar._active {
+  display: block;
+}
+
+.settings__sub-title {
+  display: inline;
+}
+
+.switchLang {
+  text-align: start;
 }
 
 .lang {
@@ -288,8 +329,31 @@ body {
   font-weight: 800;
 }
 
+.photoSourse,
+.blocks {
+  display: flex;
+  justify-content: space-between;
+}
+
+.photoSourse__label,
+.blocks__label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 5px;
+}
+
+.photoSourse__radio,
+.blocks__checkbox {
+  padding: 0 5px;
+}
+
+.blocks__checkboxs {
+  display: inline-block;
+}
+
 ._hidden {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
 }
 
 @media (max-width: 768px) {
@@ -298,12 +362,12 @@ body {
     font-size: 72px;
   }
 
-  .greeting-container {
+  .greeting {
     min-height: 40px;
     font-size: 32px;
   }
 
-  .greeting {
+  .greeting-text {
     padding: 5px;
   }
 

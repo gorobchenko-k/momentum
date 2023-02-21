@@ -39,22 +39,81 @@
         </div>
         <time class="time"></time>
         <date class="date"></date>
-        <div class="greeting-container">
-            <span class="greeting"></span>
+        <div class="greeting">
+            <span class="greeting-text"></span>
             <input type="text" class="name" />
         </div>
     </main>
     <footer class="footer">
-        <button class="change-quote"></button>
-        <div>
-            <div class="quote"></div>
+        <div class="quote">
+            <button class="change-quote"></button>
+            <div class="quote-text"></div>
             <div class="author"></div>
         </div>
 
-        <div class="switchLang">
-            <span class="lang lang-en">EN</span>|<span class="lang lang-ru">RU</span>
+        <div class="settings">
+            <div class="settings__bar">
+                <h3 class="settings__title">Settings</h3>
+                <div class="switchLang">
+                    <h4 class="settings__sub-title">Language: </h4>
+                    <span class="lang lang-en">EN</span>|<span class="lang lang-ru">RU</span>
+                </div>
+                <div class="photoSourse">
+                    <h4 class="settings__sub-title">Photo Source: </h4>
+                    <label class="photoSourse__label" for="github">
+                        <input type="radio" class="photoSourse__radio" id="github" value="github"
+                            name="photoSourse__values">
+                        GitHub
+                    </label>
+                    <label class="photoSourse__label" for="unsplash">
+                        <input type="radio" class="photoSourse__radio" id="unsplash" value="unsplash"
+                            name="photoSourse__values">
+                        Unsplash
+                    </label>
+                    <label class="photoSourse__label" for="flickr">
+                        <input type="radio" class="photoSourse__radio" id="flickr" value="flickr"
+                            name="photoSourse__values">
+                        Flickr
+                    </label>
+                </div>
+                <label for="tag"><span class="settings__tag"></span><input type="text" class="photoSourse__text"
+                        id="tag"></label>
+
+                <div class="blocks">
+                    <h4 class="settings__sub-title">Blocks: </h4>
+                    <div class="blocks__checkboxs">
+                        <label class="blocks__label" for="time">
+                            <input type="checkbox" class="blocks__checkbox" id="time" value="time">
+                            <span>Time </span>
+                        </label>
+                        <label class="blocks__label" for="date">
+                            <input type="checkbox" class="blocks__checkbox" id="date" value="date">
+                            <span>Date</span>
+                        </label>
+                        <label class="blocks__label" for="greeting">
+                            <input type="checkbox" class="blocks__checkbox" id="greeting" value="greeting">
+                            <span>Greeting</span>
+                        </label>
+                        <label class="blocks__label" for="quote">
+                            <input type="checkbox" class="blocks__checkbox" id="quote" value="quote">
+                            <span>Quote</span>
+                        </label>
+                        <label class="blocks__label" for="weather">
+                            <input type="checkbox" class="blocks__checkbox" id="weather" value="weather">
+                            <span>Weather</span>
+                        </label>
+                        <label class="blocks__label" for="player">
+                            <input type="checkbox" class="blocks__checkbox" id="player" value="player">
+                            <span>Player</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <button class="settings-icon"></button>
         </div>
+
     </footer>
+    <script src="scripts/settings.js"></script>
     <script src="scripts/translation.js"></script>
     <script src="scripts/greeting.js"></script>
     <script src="scripts/time.js"></script>

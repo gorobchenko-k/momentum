@@ -1,6 +1,5 @@
-const greetingElement = document.querySelector(".greeting");
+const greetingElement = document.querySelector(".greeting-text");
 const nameInput = document.querySelector(".name");
-
 
 function getTimeOfDay(hours) {
     const timeOfDay = {
@@ -9,7 +8,6 @@ function getTimeOfDay(hours) {
         2: 'afternoon',
         3: 'evening',
     }
-
     return timeOfDay[Math.floor(hours / 6)];
 }
 
@@ -28,7 +26,7 @@ function getGreetingText(hours) {
             'evening': 'Добрый вечер',
         }
     };
-    return greetingTextOfTime[currentLang][getTimeOfDay(hours)];
+    return greetingTextOfTime[settings.language][getTimeOfDay(hours)];
 }
 
 function showGreeting(date) {
@@ -37,9 +35,12 @@ function showGreeting(date) {
 
     greetingElement.textContent = greetingText;
 }
+nameInput.placeholder = settings.language === 'en' ? "[Enter name]" : "[Введите имя]";
 
 function setLocalStorege() {
     localStorage.setItem('name', nameInput.value);
+    localStorage.setItem('lang', settings.language);
+    localStorage.setItem('photoSource', settings.photoSource);
 }
 
 function getLocalStorege() {
@@ -50,4 +51,3 @@ function getLocalStorege() {
 
 window.addEventListener("beforeunload", setLocalStorege);
 window.addEventListener("load", getLocalStorege);
-nameInput.placeholder = currentLang === 'en' ? "[Enter name]" : "[Введите имя]";
