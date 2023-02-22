@@ -82,6 +82,7 @@ body {
 
 .player-icon,
 .slider-icon,
+.todo-icon,
 .change-quote,
 .settings-icon {
   width: 32px;
@@ -99,13 +100,17 @@ body {
 
 .player-icon:hover,
 .slider-icon:hover,
-.change-quote:hover {
+.todo-icon:hover,
+.change-quote:hover,
+.settings-icon:hover {
   opacity: 1;
 }
 
 .player-icon:active,
 .slider-icon:active,
-.change-quote:active {
+.todo-icon:active,
+.change-quote:active,
+.settings-icon:active {
   border: 0;
   outline: 0;
   transform: scale(1.1);
@@ -277,25 +282,20 @@ body {
   min-height: 20px;
 }
 
-.settings {
+.settings,
+.todo {
   position: absolute;
   bottom: 0;
-  right: 0;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   font-size: 14px;
 }
 
-.settings-icon {
-  background-image: url("../assets/svg/settings.svg");
-}
-
-.settings__bar {
+.settings__bar,
+.todo__container {
   display: none;
   width: 350px;
-  height: 170px;
   border-radius: 5px;
   background-color: #fff;
   opacity: .8;
@@ -304,12 +304,64 @@ body {
   margin: 5px;
 }
 
-.settings__bar>* {
+.todo {
+  left: 0;
+  align-items: flex-start;
+}
+
+.todo__container._active {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.todo__list {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 0;
+}
+
+.todo__label {
+  display: flex;
+  align-items: center;
   padding: 5px;
+}
+
+.todo__checkbox {
+  margin: 0 5px;
+}
+
+.todo__input {
+  width: 100%;
+  font-size: 14px;
+  border: 1px solid #ffffff;
+  padding: 10px 5px;
+  border-radius: 5px;
+}
+
+.todo__input:focus {
+  outline: none;
+}
+
+.todo-icon {
+  background-image: url("../assets/svg/todoList.svg");
+}
+
+.settings {
+  right: 0;
+  align-items: flex-end;
+}
+
+.settings-icon {
+  background-image: url("../assets/svg/settings.svg");
 }
 
 .settings__bar._active {
   display: block;
+}
+
+.settings__bar>* {
+  padding: 5px;
 }
 
 .settings__sub-title {
@@ -346,6 +398,7 @@ body {
 .photoSourse__radio,
 .blocks__checkbox {
   padding: 0 5px;
+  margin-right: 5px;
 }
 
 .blocks__checkboxs {
