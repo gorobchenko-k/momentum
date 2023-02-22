@@ -17,6 +17,17 @@ const settingsText = {
     }
 };
 
+const todoListText = {
+    'en': {
+        'todoList': 'ToDo List',
+        'enterTask': 'Enter task',
+    },
+    'ru': {
+        'todoList': 'Список дел',
+        'enterTask': 'Введите задачу',
+    }
+};
+
 const langEN = document.querySelector(".lang-en");
 const langRU = document.querySelector(".lang-ru");
 
@@ -26,10 +37,10 @@ function changeLang(lang) {
     showTime();
     getWeather();
     getQuotes();
-    setSettingsTranslation();
+    setTranslation();
 }
 
-function setSettingsTranslation() {
+function setTranslation() {
     const lang = settings.language;
     const settingsTitle = document.querySelector(".settings__title");
     const settingsLanguage = document.querySelector(".switchLang>.settings__sub-title");
@@ -37,6 +48,8 @@ function setSettingsTranslation() {
     const settingsTag = document.querySelector(".settings__tag");
     const settingsBlock = document.querySelector(".blocks>.settings__sub-title");
     const settingsBlocks = document.querySelectorAll(".blocks__label>span");
+    const todoInput = document.querySelector(".todo__input");
+    const todoTitle = document.querySelector(".todo__title");
 
     settingsTitle.textContent = settingsText[lang].settings;
     settingsLanguage.textContent = settingsText[lang].language + ": ";
@@ -44,6 +57,9 @@ function setSettingsTranslation() {
     settingsTag.textContent = settingsText[lang].tag + ": ";
     settingsBlock.textContent = settingsText[lang].blocks + ": ";
     settingsBlocks.forEach((item, index) => item.textContent = settingsText[lang].blocksName[index]);
+
+    todoTitle.textContent = todoListText[lang].todoList;
+    todoInput.placeholder = todoListText[lang].enterTask;
 }
 
 if (settings.language === "en") {
@@ -63,4 +79,4 @@ langRU.addEventListener("click", () => {
     langRU.classList.add("_active");
 });
 
-setSettingsTranslation();
+setTranslation();
