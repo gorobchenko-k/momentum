@@ -60,7 +60,7 @@ async function getLinkToImageUnsplash(timeOfDay) {
 
 async function getLinkToImageFlickr(timeOfDay) {
     const tag = settings.photoTag ? settings.photoTag : timeOfDay;
-    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=e57f2613daf7544590197cc2c8ac5f8d&tags=${timeOfDay}&extras=url_l&format=json&nojsoncallback=1`;
+    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=e57f2613daf7544590197cc2c8ac5f8d&tags=${tag}&extras=url_l&format=json&nojsoncallback=1`;
     const res = await fetch(url);
     const data = await res.json();
     const urlBackgroundImage = data.photos.photo[randomNum].url_l;
@@ -91,11 +91,7 @@ function getSlidePrev() {
 }
 
 function disabledInput(elem) {
-    if (elem.value === 'github') {
-        tagInput.disabled = true;
-    } else {
-        tagInput.disabled = false;
-    }
+    tagInput.disabled = elem.value === 'github';
 }
 
 function setPhotoTag(event) {
@@ -119,5 +115,5 @@ photoSourseRadioButtons.forEach(item => item.addEventListener('change', function
 }));
 
 tagInput.addEventListener("keypress", setPhotoTag);
-
+getRandomNum(min, max);
 setBackgroundImage();

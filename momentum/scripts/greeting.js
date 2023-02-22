@@ -35,12 +35,9 @@ function showGreeting(date) {
 
     greetingElement.textContent = greetingText;
 }
-nameInput.placeholder = settings.language === 'en' ? "[Enter name]" : "[Введите имя]";
 
 function setLocalStorege() {
     localStorage.setItem('name', nameInput.value);
-    localStorage.setItem('lang', settings.language);
-    localStorage.setItem('photoSource', settings.photoSource);
 }
 
 function getLocalStorege() {
@@ -48,6 +45,8 @@ function getLocalStorege() {
         nameInput.value = localStorage.getItem('name');
     }
 }
+
+nameInput.placeholder = settings.language === 'en' ? "[Enter name]" : "[Введите имя]";
 
 window.addEventListener("beforeunload", setLocalStorege);
 window.addEventListener("load", getLocalStorege);

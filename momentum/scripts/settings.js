@@ -4,6 +4,8 @@ const blocksCheckboxs = document.querySelectorAll(".blocks__checkbox");
 
 let settings = {
     photoTag: null,
+    photoSource: 'github',
+    language: 'en',
     blocks: {
         'time': true,
         'date': true,
@@ -18,8 +20,8 @@ function showSettingsBar() {
     settingsBar.classList.toggle("_active");
 }
 
-function hideBlocks(e) {
-    const blockName = e.target.value;
+function hideBlocks(elem) {
+    const blockName = elem.value;
     const blockElem = document.querySelector(`.${blockName}`);
 
     if (settings.blocks[blockName]) {
@@ -29,9 +31,20 @@ function hideBlocks(e) {
     }
 }
 
+function setSettingsLocalStorege() {
+    localStorage.setItem('settings', JSON.stringify(settings));
+}
+
+function getSettingsLocalStorege() {
+    if (localStorage.getItem('settings')) {
+        settings = JSON.parse(localStorage.getItem('settings'));
+    }
+}
+getSettingsLocalStorege();
+blocksCheckboxs.forEach(item => {
+    hideBlocks(item);
+});
 settingsButton.addEventListener("click", showSettingsBar);
-settings.language = localStorage.getItem('lang') ? localStorage.getItem('lang') : "en";
-settings.photoSource = localStorage.getItem('photoSource') ? localStorage.getItem('photoSource') : "gitHub";
 
 for (const block in settings.blocks) {
     const blockElem = document.querySelector(`#${block}`);
@@ -42,5 +55,7 @@ for (const block in settings.blocks) {
 
 blocksCheckboxs.forEach(item => item.addEventListener('change', function (e) {
     settings.blocks[e.target.value] = e.target.checked;
-    hideBlocks(e);
+    hideBlocks(e.target);
 }));
+
+window.addEventListener("beforeunload", setSettingsLocalStorege);
