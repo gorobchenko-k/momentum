@@ -10,7 +10,7 @@
 }
 
 body {
-  min-width: 480px;
+  /* min-width: 480px; */
   min-height: 100vh;
   font-family: 'Arial', sans-serif;
   font-size: 16px;
@@ -36,7 +36,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  width: 100%;
+  width: 100vw;
   height: 30vh;
   min-height: 220px;
   padding: 20px;
@@ -182,7 +182,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 100vw;
   height: 40vh;
   min-height: 260px;
   padding: 20px;
@@ -257,7 +257,7 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  width: 100%;
+  width: 100vw;
   height: 30vh;
   min-height: 160px;
   padding: 20px;
@@ -314,6 +314,7 @@ body {
 
 .settings__sub-title {
   display: inline;
+  text-align: left;
 }
 
 .switchLang {
@@ -357,12 +358,29 @@ body {
 }
 
 @media (max-width: 768px) {
+  .weather {
+    align-items: flex-end;
+  }
+
+  .description-container {
+    justify-content: flex-end;
+  }
+
+  .city {
+    width: 100px;
+  }
+
   .time {
     min-height: 80px;
     font-size: 72px;
   }
 
+  .date {
+    font-size: 20px;
+  }
+
   .greeting {
+    flex-direction: column;
     min-height: 40px;
     font-size: 32px;
   }
@@ -372,7 +390,13 @@ body {
   }
 
   .name {
+    max-width: 220px;
     font-size: 32px;
     padding: 5px;
+  }
+
+  .settings__bar {
+    width: 290px;
+    height: 190px;
   }
 }
